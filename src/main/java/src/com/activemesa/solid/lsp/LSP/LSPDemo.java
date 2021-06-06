@@ -94,8 +94,7 @@ class LSPDemo
     useIt(rc);
 
     Rectangle sq = new Square();
-    sq.setHeight(5);
-    sq.setWidth(10);
+    sq.setWidth(5);
     useIt(sq);
   }
 }
