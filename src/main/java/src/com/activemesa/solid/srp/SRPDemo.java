@@ -1,4 +1,4 @@
-package src.com.activemesa.solid.srp.SRP;
+package src.com.activemesa.solid.srp;
 
 import java.io.*;
 import java.net.URL;
@@ -8,7 +8,6 @@ import java.util.List;
 class Journal
 {
   private final List<String> entries = new ArrayList<>();
-
   private static int count = 0;
 
   public void addEntry(String text)
@@ -45,7 +44,7 @@ class Persistence
   public void saveToFile(Journal journal, 
     String filename, boolean overwrite) throws Exception
   {
-    if (overwrite || new File(filename).exists())
+    if (overwrite || !(new File(filename).exists()))
       try (PrintStream out = new PrintStream(filename)) {
         out.println(journal.toString());
       }
@@ -62,11 +61,13 @@ class SRPDemo
     Journal j = new Journal();
     j.addEntry("I cried today");
     j.addEntry("I ate a bug");
+    j.addEntry("I am happy");
+    j.addEntry("I kissed her");
     System.out.println(j);
 
     Persistence p = new Persistence();
     String filename = "c:\\temp\\journal.txt";
-    p.saveToFile(j, filename, true);
+    p.saveToFile(j, filename, false);
 
     // windows!
     Runtime.getRuntime().exec("notepad.exe " + filename);
