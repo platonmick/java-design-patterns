@@ -28,15 +28,18 @@ public class CodeBuilder {
     public String toString()
     {
         String indent = "  ";
+        String nl = System.lineSeparator();
+
         StringBuilder sb = new StringBuilder();
-        sb.append("public class ").append(className).append('\n');
-        sb.append("{\n");
+        sb.append("public class ").append(className).append(nl);
+        sb.append("{").append(nl);
         for (int i = 0; i < fieldNames.size(); i++){
             sb.append(indent)
                     .append(fieldTypes.get(i))
                     .append(' ')
                     .append(fieldNames.get(i))
-                    .append(";\n");
+                    .append(";")
+                    .append(nl);
         }
         sb.append("}");
 
